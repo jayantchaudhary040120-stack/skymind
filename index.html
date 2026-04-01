@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Skymind - Hybrid AI</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="mobile-safe-height w-full flex text-slate-200" onclick="hideContextMenu()">
+
+    <div class="aurora-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div id="context-menu">
+        <button onclick="deleteSelectedChat()" class="flex items-center gap-2 px-4 py-2 text-sm text-red-400 hover:bg-white/5 rounded-lg w-full transition-colors">
+            <i class="fa-solid fa-trash-can"></i> Delete Chat
+        </button>
+    </div>
+
+    <div id="about-screen" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-md bg-black/60 opacity-0 transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-sm md:max-w-md rounded-2xl p-6 md:p-8 relative transform scale-95 transition-transform duration-300 flex flex-col items-center text-center shadow-2xl border border-white/10" id="about-content">
+            
+            <button onclick="hideAbout()" class="absolute top-4 left-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 mb-4 mt-2">
+                <i class="fa-solid fa-cloud-bolt text-white text-3xl"></i>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-white mb-3">About Skymind</h2>
+            
+            <p class="text-slate-300 text-sm leading-relaxed mb-8 px-2">
+                This is Skymind, created by <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold">JAYANT CHAUDHARY</span>. 
+                It is a cutting-edge hybrid AI designed to provide intelligent, seamless, and lightning-fast interactions using state-of-the-art multi-model architecture.
+            </p>
+
+            <div class="w-full space-y-3">
+                <a href="https://whatsapp.com/channel/0029Vb7UVRH0gcfFA2aZIj3s" target="_blank" class="flex items-center gap-3 w-full p-3.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 transition-all group shadow-[0_0_15px_rgba(37,211,102,0.1)] hover:shadow-[0_0_20px_rgba(37,211,102,0.2)]">
+                    <i class="fa-brands fa-whatsapp text-[#25D366] text-xl"></i>
+                    <span class="text-[#25D366] font-medium flex-1 text-left">Follow us on WhatsApp</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[#25D366]/50 text-xs group-hover:text-[#25D366] transition-colors"></i>
+                </a>
+
+                <a href="https://youtube.com/@storyteller_ai2.0?si=VinWR0qt09AuscvQ" target="_blank" class="flex items-center gap-3 w-full p-3.5 rounded-xl bg-[#FF0000]/10 hover:bg-[#FF0000]/20 border border-[#FF0000]/30 transition-all group shadow-[0_0_15px_rgba(255,0,0,0.1)] hover:shadow-[0_0_20px_rgba(255,0,0,0.2)]">
+                    <i class="fa-brands fa-youtube text-[#FF0000] text-xl"></i>
+                    <span class="text-[#FF0000] font-medium flex-1 text-left">Subscribe to our Channel</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[#FF0000]/50 text-xs group-hover:text-[#FF0000] transition-colors"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/80 z-40 hidden transition-opacity duration-300 opacity-0 md:hidden"></div>
+
+    <aside id="sidebar" class="fixed md:relative inset-y-0 left-0 z-50 w-72 sidebar-glass transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col h-full">
+        <div class="p-5 flex items-center justify-between border-b border-white/5">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-cloud-bolt text-white text-xs"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight text-white">Skymind</h1>
+                    <span class="text-[9px] text-cyan-400 font-bold tracking-widest uppercase">Hybrid</span>
+                </div>
+            </div>
+            <button onclick="toggleSidebar()" class="md:hidden text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="p-4">
+            <button onclick="startNewChat(); toggleSidebarIfMobile()" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 hover:text-blue-300 rounded-xl transition-all border border-blue-500/20 group">
+                <i class="fa-solid fa-plus text-xs group-hover:scale-110 transition-transform"></i>
+                <span class="font-medium text-sm">New Session</span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-2 space-y-1 select-none" id="history-list"></div>
+
+        <div class="p-2 border-t border-white/5 mx-2 mt-2">
+            <button onclick="showAbout()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-lg transition-all group">
+                <i class="fa-solid fa-circle-info group-hover:scale-110 transition-transform"></i>
+                <span class="text-sm font-medium">About Us</span>
+            </button>
+        </div>
+
+        <div class="pb-4 pt-2 border-t border-white/5 bg-black/20 text-center">
+            <p class="text-[10px] text-slate-500">Long press chat to delete</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full relative w-full">
+        <header class="md:hidden h-14 flex items-center justify-between px-4 bg-[#020617]/90 backdrop-blur-md sticky top-0 z-30 border-b border-white/5">
+            <button onclick="toggleSidebar()" class="w-10 h-10 flex items-center justify-center text-slate-300 hover:text-white rounded-full active:bg-white/5 transition-colors">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+            <span class="font-bold text-white tracking-wide">Skymind</span>
+            <button onclick="startNewChat()" class="w-10 h-10 flex items-center justify-center text-slate-300 hover:text-white rounded-full active:bg-white/5 transition-colors">
+                <i class="fa-solid fa-pen-to-square text-lg"></i>
+            </button>
+        </header>
+
+        <div id="chat-container" class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 scroll-smooth pb-32 md:pb-10">
+            <div id="welcome-screen" class="h-full flex flex-col items-center justify-center text-center space-y-6 px-4 animate-[fadeIn_0.5s_ease-out]">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                    <div class="relative w-20 h-20 rounded-2xl bg-slate-900/80 border border-white/10 flex items-center justify-center shadow-2xl mx-auto backdrop-blur-md">
+                        <i class="fa-solid fa-microchip text-4xl text-cyan-400"></i>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <h2 class="text-3xl font-bold text-white">Skymind <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Hybrid</span></h2>
+                    <p class="text-sm text-slate-400">Engineered by <span class="text-cyan-400 font-semibold">JAYANT CHAUDHARY</span></p>
+                    <div class="flex justify-center gap-2 mt-2">
+                        <span class="px-2 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-[10px] text-blue-300">Llama 3.1</span>
+                        <span class="px-2 py-1 rounded bg-orange-500/10 border border-orange-500/20 text-[10px] text-orange-300">Llama Scout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 bg-[#020617]/80 backdrop-blur-xl p-3 md:p-5 z-20 absolute bottom-0 w-full md:relative">
+            <div class="max-w-4xl mx-auto relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+                
+                <div class="relative glass-panel rounded-2xl bg-[#0f172a] flex flex-col">
+                    <div class="flex justify-between items-center px-4 py-2 border-b border-white/5 bg-white/2 rounded-t-2xl">
+                        <button onclick="cycleModel()" id="model-badge" class="flex items-center gap-2 px-2 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 transition-all cursor-pointer">
+                            <div class="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"></div>
+                            <span class="text-[10px] font-bold text-blue-300 tracking-wide uppercase" id="current-model-name">LLAMA 3.1</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-blue-300/50"></i>
+                        </button>
+                        <div id="status-indicator" class="text-[10px] text-slate-500 hidden"><i class="fa-solid fa-arrows-rotate fa-spin mr-1"></i> Auto-switching...</div>
+                    </div>
+
+                    <div class="flex items-end p-2">
+                        <textarea 
+                            id="user-input" 
+                            rows="1"
+                            placeholder="Ask anything..." 
+                            class="w-full bg-transparent text-base text-white placeholder-slate-500 px-3 py-2 focus:outline-none resize-none max-h-32 overflow-y-auto"
+                            oninput="autoResize(this)"
+                            onkeydown="handleEnter(event)"
+                        ></textarea>
+                        
+                        <button id="send-btn" onclick="sendMessage()" class="mb-1 mr-1 w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:scale-105 active:scale-95 transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-[10px] text-slate-600 mt-2 font-medium">Created by Jayant Chaudhary</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
