@@ -1,12 +1,12 @@
 // --- API KEYS CONFIGURATION ---
-        const SAMBANOVA_KEY = '13f5b08f-d72e-4d09-ac19-865c40a8a278'; 
+        const SAMBANOVA_KEY = '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'; 
         const GROQ_KEY = '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'; 
         
         const CONFIG = {
             samba: {
                 name: 'Llama 3.1',
                 key: SAMBANOVA_KEY,
-                url: 'https://api.sambanova.ai/v1/chat/completions',
+                url: 'https://api.groq.com/openai/v1/chat/completions',
                 modelId: 'Meta-Llama-3.1-8B-Instruct',
                 color: 'blue'
             },
