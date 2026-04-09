@@ -6,7 +6,7 @@
             samba: {
                 name: 'Llama 3.1',
                 key: SAMBANOVA_KEY,
-                url: 'https://openrouter.ai/api/v1',
+                url: 'https://openrouter.ai/api/v1/chat/completions',
                 modelId: 'openrouter/free',
                 color: 'blue'
             },
