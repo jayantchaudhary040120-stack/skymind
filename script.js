@@ -1,5 +1,5 @@
 // --- API KEYS CONFIGURATION ---
-        const SAMBANOVA_KEY = 'e4c01b89-c576-4237-9efe-e40c4cb6420c'; 
+        const SAMBANOVA_KEY = '13f5b08f-d72e-4d09-ac19-865c40a8a278'; 
         const GROQ_KEY = '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'; 
         
         const CONFIG = {
