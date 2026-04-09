@@ -7,7 +7,7 @@
                 name: 'Llama 3.1',
                 key: SAMBANOVA_KEY,
                 url: 'https://api.groq.com/openai/v1/chat/completions',
-                modelId: 'Meta-Llama-3.1-8B-Instruct',
+                modelId: 'albert-base-v2',
                 color: 'blue'
             },
             groq: {
