@@ -18,7 +18,7 @@
                 color: 'orange'
             },
             creator: 'JAYANT CHAUDHARY',
-            activeModel: 'samba'
+            activeModel: 'groq'
         };
 
         // --- STATE ---
