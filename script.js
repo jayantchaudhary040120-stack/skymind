@@ -1,20 +1,20 @@
 // --- API KEYS CONFIGURATION ---
         const SAMBANOVA_KEY = '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'; 
-        const GROQ_KEY = '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'; 
+        const GROQ_KEY = 'csk-wtec46rkmrydt3xmv9j39dr5j6ypvkvy4wvjc24em4vv4dpp'; 
         
         const CONFIG = {
             samba: {
-                name: 'Pro',
+                name: 'PRO',
                 key: SAMBANOVA_KEY,
                 url: 'https://openrouter.ai/api/v1/chat/completions',
                 modelId: 'openrouter/free',
                 color: 'blue'
             },
             groq: {
-                name: 'fast',
+                name: 'FAST',
                 key: GROQ_KEY,
-                url: 'https://api.groq.com/openai/v1/chat/completions',
-                modelId: 'llama-3.3-70b-versatile',
+                url: 'https://api.cerebras.ai/v1/chat/completions',
+                modelId: 'llama3.1-8b',
                 color: 'orange'
             },
             creator: 'JAYANT CHAUDHARY',
