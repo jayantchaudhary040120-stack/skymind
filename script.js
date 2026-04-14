@@ -187,7 +187,7 @@
 
         // --- MODEL MANAGEMENT ---
         function cycleModel() {
-            CONFIG.activeModel = CONFIG.activeModel === 'samba' ? 'groq' : 'samba';
+            CONFIG.activeModel = CONFIG.activeModel === 'groq' ? 'samba' : 'groq';
             updateModelUI();
         }
 
