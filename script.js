@@ -14,7 +14,7 @@
                 name: 'FAST',
                 key: GROQ_KEY,
                 url: 'https://api.cerebras.ai/v1/chat/completions',
-                modelId: 'llama3.1-8b',
+                modelId: 'gpt-oss-120b',
                 color: 'orange'
             },
             creator: 'JAYANT CHAUDHARY',
