@@ -1,6 +1,6 @@
 // --- API KEYS CONFIGURATION ---
         const SAMBANOVA_KEY = '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'; 
-        const GROQ_KEY = 'csk-vvy9jxp33xyhmmydm9p3ep3ck4wvr3wvftvhh38hhc429jex'; 
+        const GROQ_KEY = 'csk-jeer8kpjjmvvhtnytenv2xt3nxjryr4ype4rnetrch6wrhwc'; 
         
         const CONFIG = {
             samba: {
